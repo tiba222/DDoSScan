@@ -1,17 +1,17 @@
-## Introduction
+# Introduction
 This tool can scan for DDoS attacks in netflow data and execute actions based on thresholds. Available actions for now are ACL based mitigations by using expect scripts (block or divert traffic)
 or sending out alerts using mail. However the tool is written with the idea that creating new actions is easy.
 
 For the ACL based mitigations the tool is currently only supporting IOS-XR, but also here adding support for other router operating systems is quite easy.
 
-## Required software ##
+# Required software ##
 -   NFSen
 -   NFDump
 -   PHP5
 -   MySQL / MariaDB
 -   Expect
 
-## Installation
+# Installation
 -   Install all required dependencies (see above)
 -   Clone the repository in for example the /opt/directory
 -   Make sure the worker.php and ddosadmin.php file + all files in the /expect directory have execute permissions
@@ -21,11 +21,11 @@ For the ACL based mitigations the tool is currently only supporting IOS-XR, but 
 -   Create cron job that executes worker.php every 5 minutes
 -   (Optional) Create symlink to ddosadmin.php in for example the /usr/bin directory, this will make it possible to use the CLI interface without specifying the complete path each time
 
-## Configuration
+# Configuration
 Configuration is for the moment done via the basic CLI interface provided by the ddosadmin.php script. The current application configuration can be viewed with the 'ddosadmin show config' command. 
 Settings can be changed with the 'ddosadmin config change-setting <setting> <value>' command.
 
-# Available config options:
+## Available config options:
 ````
 syslog => 0 or 1, enable or disable syslog logging.
 scan_top_n => Define the maximum number of victims to find. This setting is used for limiting NFDump output so a big value here can impact scanning performance.
@@ -37,11 +37,11 @@ netflow sampling => Sampling rate of the netflow data configured on your routers
 def_autoremove_days => Number of days to make mitigations last when no other value is specified in the action parameters.
 ````
 
-# Configuring scanning subnets
+## Configuring scanning subnets
 Also you will have to configure your own subnets (the subnets you want to protect), this is done with the 'ddosadmin config add-subnet <cidr> <description>' 
 and the 'ddosadmin config delete-subnet <cidr>' command.
 
-## CLI Help
+# CLI Help 
 ```
 ddosadmin assign action <action_id> <threshold_id>
 
