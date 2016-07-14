@@ -1,0 +1,44 @@
+#!/usr/bin/expect -f
+
+# Load parameters into variables
+ set hostname [lindex $argv 0]
+ set username [lindex $argv 1]
+ set password [lindex $argv 2]
+ set enablepassword [lindex $argv 3]
+ set sequencenumber [lindex $argv 4]
+ set acl [lindex $argv 5]
+
+# Disable logging expect output to screen
+ log_user 0
+
+# Start SSH session without key checking
+ spawn ssh -o StrictHostKeyChecking=no $username\@$hostname
+
+# Login with SSH
+ expect {
+ timeout { send_user "\nConnection timeout - Check Host\n"; exit 1 }
+ eof { send_user "\nSSH Connection To $hostname Failed\n"; exit 1 }
+ "*#" {}
+ "*assword:" {
+ send "$password\n"
+ expect "#"
+ }
+ }
+
+# Change to configure mode
+ send "conf t\n"
+ expect "(config)#"
+
+# Remove hosts from access lists
+ send "ipv4 access-list $acl\n"
+ expect "(config-ipv4-acl)#"
+ send "no $sequencenumber\n"
+ expect "(config-ipv4-acl)#"
+ send "commit\n"
+ expect "#"
+ send "end\n"
+ expect "#"
+ send "exit\n"
+ expect ":~\$"
+ exit
+
