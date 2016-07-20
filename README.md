@@ -13,7 +13,7 @@ For the ACL based mitigations the tool is currently only supporting IOS-XR, but 
 
 # Installation
 -   Install all required dependencies (see above)
--   Clone the repository in for example the /opt/directory
+-   Clone the repository in for example the /opt directory
 -   Make sure the worker.php and ddosadmin.php file + all files in the /expect directory have execute permissions
 -   Create new database and import the db_install.sql file located in the /database directory
 -   (Optional) Import the db_content.sql file located in the /database directory. This is not required but it will give you some predefined definitions and thresholds

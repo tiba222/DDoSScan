@@ -39,6 +39,8 @@ class ACLMitigation implements ActionHandler {
         foreach ($this->routermanager->listRouters() as $router) {
             return $this->_addToRouterACLs($router, $action, $data, $definition, $attack);
         }
+        
+        $this->mitigationmanager->addMitigationHistory($attack, TRUE, $action->action_parameters, 'Automatically Mitigated');
     }
 
     public function postScan() {
@@ -85,10 +87,9 @@ class ACLMitigation implements ActionHandler {
             }
 
             $this->aclmanager->createACLEntry($acl->id, $attack->id, $seq, $output[0]);
-            $this->mitigationmanager->addMitigationHistory($attack, TRUE, $action->action_parameters, 'Automatically Mitigated');
-
-            return true;
         }
+
+        return true;
     }
 
     protected function _deleteFromRouterACLs($router, $acl, $acl_entry) {
