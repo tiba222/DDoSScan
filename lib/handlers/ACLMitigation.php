@@ -39,7 +39,7 @@ class ACLMitigation implements ActionHandler {
         foreach ($this->routermanager->listRouters() as $router) {
             return $this->_addToRouterACLs($router, $action, $data, $definition, $attack);
         }
-        
+
         $this->mitigationmanager->addMitigationHistory($attack, TRUE, $action->action_parameters, 'Automatically Mitigated');
     }
 
@@ -51,11 +51,11 @@ class ACLMitigation implements ActionHandler {
                 $acl = $this->aclmanager->getACLById($entry->acl_id);
                 $router = $this->routermanager->getRouterById($acl->router_id);
 
-                if ($this->_deleteFromRouterACLs($router, $acl, $entry)) {
-                    $this->mitigationmanager->setInactive($expired['id']);
+                if ($this->_deleteFromRouterACL($router, $acl, $entry)) {
                     $this->aclmanager->deleteACLEntryById($entry->id);
                 }
             }
+            $this->mitigationmanager->setInactive($expired['id']);
         }
     }
 
@@ -92,7 +92,7 @@ class ACLMitigation implements ActionHandler {
         return true;
     }
 
-    protected function _deleteFromRouterACLs($router, $acl, $acl_entry) {
+    protected function _deleteFromRouterACL($router, $acl, $acl_entry) {
         if (!in_array($router->type, $this->router_types)) {
             logToSyslog("Router type $router->type is not supported", LOG_ERR);
             return false;
