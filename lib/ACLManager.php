@@ -51,7 +51,7 @@ class ACLManager {
     }
 
     public function createACL($router_id, $name, $type, $seq_start, $seq_end) {
-        $query = $this->db->prepare("INSERT INTO ddos_acl (router_id, name, type, seq_start, seq_end) VALUES (:router_id, :name, :type, :seq_start, :seq_end)");
+        $query = $this->db->prepare("INSERT INTO ddos_acl (router_id, name, type, seq_start, seq_end) VALUES (:router_id, :name, :acl_type, :seq_start, :seq_end)");
         $query->bindParam(':router_id', $router_id);
         $query->bindParam(':name', $name);
         $query->bindParam(':acl_type', $type);
