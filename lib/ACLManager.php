@@ -124,6 +124,13 @@ class ACLManager {
         $query->execute();
     }
 
+    public function deleteACLById($id) {
+        $query = $this->db->prepare("DELETE FROM ddos_acl WHERE id = :id");
+        $query->bindParam(':id', $id);
+
+        $query->execute();
+    }
+
     public function createACLEntry($acl_id, $ddos_attack_id, $seq, $content) {
         $query = $this->db->prepare("INSERT INTO ddos_acl_entry (acl_id, ddos_attack_id, seq, content) VALUES (:acl_id, :ddos_attack_id, :seq, :content)");
         $query->bindParam(':acl_id', $acl_id);
@@ -161,7 +168,7 @@ class ACLManager {
                 return $i;
             }
         }
-        
+
         return -1;
     }
 

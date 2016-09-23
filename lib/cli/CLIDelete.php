@@ -17,7 +17,7 @@ class CLIDelete {
 
     public function deleteACL($argv) {
         $aclmgr = new ACLManager();
-        if ($aclmgr->deleteACLEntryById($argv[3])) {
+        if ($aclmgr->deleteACLById($argv[3])) {
             echo("OK\n");
         }
     }
