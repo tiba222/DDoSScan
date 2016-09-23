@@ -122,6 +122,8 @@ class ACLManager {
         $query->bindParam(':id', $id);
 
         $query->execute();
+        
+        return true;
     }
 
     public function deleteACLById($id) {
@@ -129,6 +131,8 @@ class ACLManager {
         $query->bindParam(':id', $id);
 
         $query->execute();
+        
+        return true;
     }
 
     public function createACLEntry($acl_id, $ddos_attack_id, $seq, $content) {

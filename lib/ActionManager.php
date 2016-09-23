@@ -82,6 +82,8 @@ class ActionManager {
         $query->bindParam(':id', $id);
 
         $query->execute();
+        
+        return true;
     }
 
     public function listActions() {
@@ -178,6 +180,8 @@ class ActionManager {
         $query->bindParam(':id', $id);
 
         $query->execute();
+        
+        return true;
     }
 
     public function getExcludedActionById($id) {

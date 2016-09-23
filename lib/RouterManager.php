@@ -11,9 +11,6 @@ class RouterManager {
         $this->db = getDB();
     }
 
-    /**
-     *
-     */
     public function listRouters() {
         $query = $this->db->query("SELECT * FROM ddos_routers");
 
@@ -26,9 +23,6 @@ class RouterManager {
         return $routers;
     }
 
-    /**
-     *
-     */
     public function getRouterById($id) {
         $query = $this->db->prepare("SELECT * FROM ddos_routers WHERE id = :id");
         $query->bindParam(':id', $id);
@@ -40,9 +34,6 @@ class RouterManager {
         return $router;
     }
 
-    /**
-     *
-     */
     public function createRouter($name, $type, $mgmt_ip, $username, $password, $enable_password, $protected_vrf, $outside_vrf) {
         $query = $this->db->prepare("INSERT INTO ddos_routers (name, type, mgmt_ip, username, password, enable_password, protected_vrf, outside_vrf) VALUES (:name, :type, :mgmt_ip, :username, :password, :enable_password, :protected_vrf, :outside_vrf)");
         $query->bindParam(':name', $name);
@@ -58,17 +49,16 @@ class RouterManager {
 
         return $this->getRouterById($this->db->lastInsertId());
     }
-    
+
     public function deleteRouterById($id) {
         $query = $this->db->prepare("DELETE FROM ddos_routers WHERE id = :id");
         $query->bindParam(':id', $id);
 
         $query->execute();
+
+        return true;
     }
 
-    /**
-     *
-     */
     public function updateRouter($router) {
         $query = $this->db->prepare("UPDATE ddos_routers SET name = :name, type = :type, mgmt_ip = :mgmt_ip, username = :username, password = :password, enable_password = :enable_password, protected_vrf = :protected_vrf, outside_vrf = :outside_vrf WHERE id = :id");
 
@@ -86,5 +76,3 @@ class RouterManager {
     }
 
 }
-
-?>

@@ -55,6 +55,8 @@ class DDoSDefinitionManager {
         $query->bindParam(':id', $id);
 
         $query->execute();
+        
+        return true;
     }
     
      public function deleteThresholdById($id) {
@@ -62,6 +64,8 @@ class DDoSDefinitionManager {
         $query->bindParam(':id', $id);
 
         $query->execute();
+        
+        return true;
     }
 
     public function updateDDoSDefinition($ddos_definition) {
