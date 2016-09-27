@@ -49,6 +49,11 @@ class CLICreate {
 
     public function createACL($argv) {
         $aclmgr = new ACLManager();
+        
+        if(!($argv[5] == "protected" || $argv[5] == "outside")){
+            echo("Cannot add ACL, type must be either \"protected\" or \"outside\"\n");
+            return false;
+        }
 
         if ($aclmgr->createACL($argv[3], $argv[4], $argv[5], $argv[6], $argv[7])) {
             echo("OK\n");
