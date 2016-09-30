@@ -161,8 +161,9 @@ class ACLManager {
 
     public function getFreeSeqNumber($acl) {
         for ($i = $acl->seq_start; $i < $acl->seq_end; $i++) {
-            $query = $this->db->prepare("SELECT count(*) AS count FROM ddos_acl_entry WHERE seq = :seq");
+            $query = $this->db->prepare("SELECT count(*) AS count FROM ddos_acl_entry WHERE seq = :seq AND acl_id = :acl_id");
             $query->bindParam(':seq', $i);
+            $query->bindParam('acl_id', $acl->id);
             $query->execute();
 
             $row = $query->fetch(PDO::FETCH_ASSOC);
