@@ -152,7 +152,7 @@ class ACLMitigation implements ActionHandler {
             if (isset($action->action_parameters["full_block"])) {
                 $parameters .= " \"$action->action_parameters['full_block']\"";
             } else {
-                $parameters .= " \"\"";
+                $parameters .= " \"0\"";
             }
         } else {
             $parameters .= " \"\"";
