@@ -42,7 +42,7 @@
     send "ipv4 access-list $outside_acl\n"
     expect "(config-ipv4-acl)#"
 
-    if { $block == 0 } {
+    if { $block == "0" } {
         send "$sequencenumber permit $proto any host $ipaddress eq $destination_port nexthop1 vrf $forward_vrf\n"
         puts "$sequencenumber permit $proto any host $ipaddress eq $destination_port nexthop1 vrf $forward_vrf"
     } else {
