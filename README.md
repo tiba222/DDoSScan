@@ -50,7 +50,7 @@ ddosadmin config add-subnet <cidr> <description>
 ddosadmin config delete-subnet <cidr>
 ddosadmin config change-setting <setting> <value>
 
-ddosadmin create acl <router_id> <name> <type: outside or inside> <seq_start> <seq_end>
+ddosadmin create acl <router_id> <name> <type: outside or protected> <seq_start> <seq_end>
 ddosadmin create action <description> <action> <action parameters: key=value;key=value> <once>
 ddosadmin create definition <description> <protocol> <source port> <destination port> <nfdump filter> <primary identifier>
 ddosadmin create exclusion <cidr> <excluded action>

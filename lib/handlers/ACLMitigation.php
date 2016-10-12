@@ -155,7 +155,7 @@ class ACLMitigation implements ActionHandler {
                 $parameters .= " \"0\"";
             }
         } else {
-            $parameters .= " \"\"";
+            $parameters .= " \"0\"";
         }
 
         return $parameters;

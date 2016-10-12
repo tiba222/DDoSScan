@@ -196,7 +196,7 @@ class CLIManager {
         . "ddosadmin config delete-subnet <cidr>\n"
         . "ddosadmin config change-setting <setting> <value>\n"
         . "\n"
-        . "ddosadmin create acl <router_id> <name> <type: outside or inside> <seq_start> <seq_end>\n"
+        . "ddosadmin create acl <router_id> <name> <type: outside or protected> <seq_start> <seq_end>\n"
         . "ddosadmin create action <description> <action> <action parameters: key=value;key=value> <once>\n"
         . "ddosadmin create definition <description> <protocol> <source port> <destination port> <nfdump filter> <primary identifier>\n"
         . "ddosadmin create exclusion <cidr> <excluded action>\n"
