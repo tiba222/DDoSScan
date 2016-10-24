@@ -2,7 +2,7 @@
 -- Dumping data for table `ddos_type`
 --
 INSERT INTO `ddos_definition` VALUES 
-(1,'DNS Amplification','udp','53','any','proto udp && (src port 53 || src port 0)','flows'),
+(1,'DNS Amplification','udp','53','any','proto udp && src port 53','flows'),
 (2,'NTP Amplification','udp','123','any','proto udp && src port 123','pps'),
 (3,'Chargen','udp','19','any','proto udp && src port 19','pps'),
 (4,'SNMP Amplification','udp','161','any','proto udp && src port 161','flows'),
@@ -12,7 +12,8 @@ INSERT INTO `ddos_definition` VALUES
 (8,'RIPv1 Amplification','udp','520','any','proto udp && src port 520','pps'),
 (9,'Portmapper Amplification','udp','111','any','proto udp && src port 111','flows'),
 (10,'UDP/80','udp','any','80','proto udp && dst port 80','flows'),
-(11,'Steam Port 27015 amplification','udp','27015','27015','proto udp && src port 27015 && dst port 27015','flows');
+(11,'Steam Port 27015 amplification','udp','27015','27015','proto udp && src port 27015 && dst port 27015','flows'),
+(12,'LDAP Amplification','udp','389','any','proto udp && src port 389','flows');
 
 --
 -- Dumping data for table `ddos_attack_threshold`
@@ -38,7 +39,9 @@ INSERT INTO `ddos_attack_threshold` (id, ddos_type_id, priority, bps_threshold, 
 (18, 10, 10, -1, -1, 1000000, 1, 24, 2),
 (19, 10, 20, -1, -1, 2000000, 0, 0, 0),
 (20, 11, 10, -1, -1, 1000000, 1, 24, 2),
-(21, 11, 20, -1, -1, 2000000, 0, 0, 0);
+(21, 11, 20, -1, -1, 2000000, 0, 0, 0),
+(22, 12, 10, -1, -1, 1000000, 1, 24, 2),
+(23, 12, 20, -1, -1, 2000000, 0, 0, 0);
 
 --
 -- Dumping data for table `ddos_threshold_action`
@@ -65,6 +68,8 @@ INSERT INTO `ddos_threshold_action` (threshold_id, action_id) VALUES
 (19,1),
 (20,1),
 (21,1),
+(22,1),
+(23,1),
 (1,2),
 (2,2),
 (3,2),
@@ -85,4 +90,6 @@ INSERT INTO `ddos_threshold_action` (threshold_id, action_id) VALUES
 (18,2),
 (19,2),
 (20,2),
-(21,2);
+(21,2),
+(22,2),
+(23,2);
